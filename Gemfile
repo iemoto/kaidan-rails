@@ -65,3 +65,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'slim-rails'
 gem 'html2slim'
 gem 'font-awesome-sass', '~> 5.12.0'
+
+# ログインセキュリティ
+gem 'recaptcha'
+
+# 都道府県等のデータ整理
+gem 'active_hash'
