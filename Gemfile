@@ -40,6 +40,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # デバッグ用
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -66,8 +70,9 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'font-awesome-sass', '~> 5.12.0'
 
-# ログインセキュリティ
-gem 'recaptcha'
-
-# 都道府県等のデータ整理
+# データベース管理
 gem 'active_hash'
+
+# jQueryを使用するために必要
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
