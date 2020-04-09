@@ -69,6 +69,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'slim-rails'
 gem 'html2slim'
 gem 'font-awesome-sass', '~> 5.12.0'
+gem 'bootstrap','~> 4.0.0'
 
 # データベース管理
 gem 'active_hash'
