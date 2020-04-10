@@ -1,15 +1,14 @@
 header.header-container
-  .header-innner
-    .header-logo
-    .header-name
-      | KAIDAN
-    ul.header-menu
-      li.menu-list
-        | 減価償却シミュレーター
-      li.menu-list
-        | 鋭意製作中
-    ul.header-login
-      li.login-list
-        | ログイン（仮）
-      li.login-list
-        | ゲストログイン(仮)
+  .header-innner.clearfix
+    .header-logo.float-left
+      = link_to image_tag(asset_path("kaidan-logo-color.svg"),alt:'kaidan', size:"250x50"), root_path
+    .header-nav
+      .header-left
+      .header-right.float-right
+        ul.header-login.list-inline
+          li.d-inline-block
+            = link_to '新規登録', root_path, class: 'btn btn-outline-success'
+          li.d-inline-block
+            = link_to 'ログイン', root_path, class: 'btn btn-outline-info'
+          li.d-inline-block
+            = link_to 'ゲストログイン', root_path, class: 'btn btn-outline-info'
