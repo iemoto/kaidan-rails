@@ -1,32 +1,62 @@
 = render 'header'
 
 .main-container
-  .main-inner
-    h4
-      | 減価償却費シミュレーター (平成24年6月1日以降取得版)
-    .a
-      | 償却方法
-      label
-        input name="q1" type="radio" value="定額法"
-          | 定額法
-      label
-        input name="q1" type="radio" value="定率法"
-          | 定率法
-      label
-        input name="q1" type="radio" value="均等償却"
-          | 均等償却
-    .b 
-      | 耐用年数
-      label 耐用年数
+  .main-inner.clearfix
+    .main-left.float-left
+      #result
+    .main-right.float-right
+      .main-right-inner
+        h4.main-title
+          | 減価償却費シミュレーター 
+          br
+          | (平成24年6月1日以降取得版)
+        .form-box-title
+          .form-box
+          .method_of_calculation-title
+            | 償却方法
+          label.label-item
+            = radio_button_tag "method", value= 0
+            | 定額法
+          label.label-item
+            = radio_button_tag "method", value= 1
+            | 定率法
+          label.label-item
+            = radio_button_tag "method", value= 2
+            | 均等償却
+        .form-box-title
+          .service_life-title
+            | 耐用年数
+          label.label-item
+          = select_tag :ser_life , options_for_select(@servicelife),prompt: '選択してください',class:'form-input'
+        .form-box-title
+          .price-title
+            | 取得価格　必須　
+          .price-box
+            label.label-item
+            .price-form
+              = text_field_tag :price ,'' ,placeholder: '半角数字で入力してください',class:'price-form-text'
+              .price-form-yen 円
+        .form-box-title
+          .business_start_month
+            | 事業開始月
+          label.label-item
+          = select_tag :sta_month , options_for_select(Array.new(12){ |i| "#{i + 1}月"}),prompt: '選択してください',class:'form-input'
+        .form-box-title
+          .business_operation_month
+            | 事業供用月
+          label.label-item
+          = select_tag :ope_month , options_for_select(Array.new(12){ |i| "#{i + 1}月"}),prompt: '選択してください',class:'form-input'
 
-    .c 事業開始月
-
-    .d
-      label 償却率
-      label 定額法
-      label 定率法
-      label 改定償却率
-      label 
-    #result
+        .test
+        / label 償却率（
+        / label 定額法
+        / input
+        / label 定率法
+        / input
+        / label 改定償却率
+        / input
+        / label 保証率
+        / input
+        / | ）
 
 = render 'footer'
