@@ -1,29 +1,32 @@
 = render 'header'
 
 .main-container
-  h4
-    | 減価償却費シミュレーター (平成24年6月1日以降取得版)
-  .a
-    | 償却方法
-    label
-      input name="q1" type="radio" value="定額法"
-        | 定額法
-    label
-      input name="q1" type="radio" value="定率法"
-        | 定率法
-    label
-      input name="q1" type="radio" value="均等償却"
-        | 均等償却
-  .b 
-    | 耐用年数
-    label 耐用年数
-  .c 事業開始月
+  .main-inner
+    h4
+      | 減価償却費シミュレーター (平成24年6月1日以降取得版)
+    .a
+      | 償却方法
+      label
+        input name="q1" type="radio" value="定額法"
+          | 定額法
+      label
+        input name="q1" type="radio" value="定率法"
+          | 定率法
+      label
+        input name="q1" type="radio" value="均等償却"
+          | 均等償却
+    .b 
+      | 耐用年数
+      label 耐用年数
 
-  .d
-  label 償却率
-  label 定額法
-  label 定率法
-  label 改定償却率
-  label 
+    .c 事業開始月
+
+    .d
+      label 償却率
+      label 定額法
+      label 定率法
+      label 改定償却率
+      label 
+    #result
 
 = render 'footer'
