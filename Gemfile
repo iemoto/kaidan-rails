@@ -70,7 +70,7 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'font-awesome-rails'
 gem 'font-awesome-sass'
-gem 'bootstrap','~> 4.0.0'
+gem 'bootstrap','~> 4.3.1'
 
 # データベース管理
 gem 'active_hash'
