@@ -32,7 +32,6 @@
             = select_tag :ser_life , options_for_select(Array.new(50){ |i| [ sprintf('%02d年', i + 1),  i + 1 ]}),prompt: '選択してください',class:'form-input'
             .form-double-down
               = image_tag asset_path("angle-double-down-solid.svg"), alt:'double-down',size:'20x20' 
-
         .form-box-title
           .price-title
             | 取得価格

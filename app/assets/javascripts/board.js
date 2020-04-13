@@ -1,0 +1,4 @@
+$(function(){
+$('#method').on('submit')
+
+})
