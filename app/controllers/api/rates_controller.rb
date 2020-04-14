@@ -1,5 +1,6 @@
 class Api::RatesController < ApplicationController
   def index
-    @rates ＝ Rate.all
+    @rates = Rate.all
+    binding.pry
   end
 end
