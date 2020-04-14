@@ -23,19 +23,24 @@ $(function(){
       targetTable.append(html);
   }
   $('#trial_cal').on('click',function(e){
-    $('#target_table').children().remove();
-    buildTable(1);
-    buildTable(2);
-
-
     e.preventDefault();
+    var hashForm = {};
+    hashForm.test = $('input[name = "method"]:checked').val();
+
+
     $.ajax({
       method: 'GET',
       url: 'api/rates',
       dataType: 'json'
     })
     .done(function(rates){
+      $('#target_table').children().remove();
+      buildTable(1);
+      buildTable(2);
+      lastBuildTable(3);
+
       console.log(rates);
+      console.log(hashForm.test);
       console.log($('input[name = "method"]:checked').val());
       console.log($('.price-form-text').val());
       console.log($('#sta_month').val());
