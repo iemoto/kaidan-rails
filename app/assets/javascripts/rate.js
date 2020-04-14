@@ -13,11 +13,16 @@ $(function(){
   }
 
   function straightLine( formObj , rateObj ){
+    var tabel = {};
     if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
-    for( var i = 0; i < formObj.serviceLife; i++ ) {
-      console.log(i, rateObj.id);
+    for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
+      if (i === 1){
+      tabel.beginningBookValue = formObj.price
+      tabel.depreciationLimit = formObj.price / 
+      tabel.periodEndBookPrice = formObj.price / 
+      }
     }
-    }
+  }
 
 
   $('#trial_cal').on('click',function(e){
@@ -34,6 +39,7 @@ $(function(){
       buildTable(2);
       var hashForm = {};
       hashForm.method = parseInt($('input[name = "method"]:checked').val(), 10);
+      hashForm.round = parseInt($('input[name = "round"]:checked').val(), 10);
       hashForm.serviceLife = parseInt($('#ser_life').val(), 10);
       hashForm.price = parseInt($('.price-form-text').val(), 10);
       hashForm.startMonth = parseInt($('#sta_month').val(), 10);

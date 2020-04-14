@@ -5,19 +5,33 @@
       br
       | (平成24年6月1日以降取得版)
     .form-box-title
-      .method_of_calculation-title
+      .radio-table-title
         | 償却方法
         span.required 必須
-      .method_of_calculation-box
-        label.method-radio-label
+      .radio-table-box
+        label.radio-label
           = radio_button_tag "method", value = 0, checked = true
-          p.method-radio-p.d-inline-block 定額法
-        label.method-radio-label
+          p.radio-p.d-inline-block 定額法
+        label.radio-label
           = radio_button_tag "method", value= 1
-          .method-radio-p.d-inline-block 定率法
-        label.method-radio-label
+          .radio-p.d-inline-block 定率法
+        label.radio-label
           = radio_button_tag "method", value= 2
-          .method-radio-p.d-inline-block 均等償却
+          .radio-p.d-inline-block 均等償却
+    .form-box-title
+      .radio-table-title
+        | 端数処理方法
+        span.required 必須
+      .radio-table-box
+        label.radio-label
+          = radio_button_tag "round", value = 0, checked = true
+          p.radio-p.d-inline-block 四捨五入
+        label.radio-label
+          = radio_button_tag "round", value= 1
+          .radio-p.d-inline-block 切り上げ
+        label.radio-label
+          = radio_button_tag "round", value= 2
+          .radio-p.d-inline-block 切り捨て
     .form-box-title
       .service_life-title
         | 耐用年数
