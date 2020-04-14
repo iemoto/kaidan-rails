@@ -16,7 +16,7 @@
             span.required 必須
           .method_of_calculation-box
             label.method-radio-label
-              = radio_button_tag "method", value= 0
+              = radio_button_tag "method", value = 0, checked = true
               p.method-radio-p.d-inline-block 定額法
             label.method-radio-label
               = radio_button_tag "method", value= 1
@@ -55,20 +55,14 @@
             | 事業供用開始月
             span.required 必須
           .form-box-select
-            = select_tag :ope_month , options_for_select(Array.new(12){ |i| [ sprintf('%02d月', i + 1),  i + 1 ]}),prompt: '選択してください',class:'form-input form-last'
+            = select_tag :ope_month , options_for_select(Array.new(12){ |i| [ sprintf('%02d月', i + 1),  i + 1 ]}),prompt: '選択してください',class:'form-input'
             .form-double-down
               = image_tag asset_path("angle-double-down-solid.svg"), alt:'double-down',size:'20x20'
 
-        .test
-        / label 償却率（
-        / label 定額法
-        / input
-        / label 定率法
-        / input
-        / label 改定償却率
-        / input
-        / label 保証率
-        / input
-        / | ）
+        .form-box-title
+          .form-box-select
+            input.btn.form-input.form-last type ='submit' id ='submit' value = '試　　　算'
+
+
 
 = render 'footer'
