@@ -11,6 +11,7 @@ $(function(){
       `
       targetTable.append(html);
   }
+  function 
 
   $('#trial_cal').on('click',function(e){
     e.preventDefault();
@@ -30,7 +31,17 @@ $(function(){
       hashForm.startMonth = $('#sta_month').val();
       hashForm.operationMonth = $('#ope_month').val();
 
-
+      switch (hashForm.method){
+        case 0:
+          console.log(0);
+          brack;
+        case 1:
+          console.log(case);
+          brack;
+        case 2:
+          console.log('OK');
+          brack;
+      }
     })
     .fail(function(){
       console.log('Error')
