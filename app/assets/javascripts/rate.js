@@ -12,10 +12,12 @@ $(function(){
       targetTable.append(html);
   }
 
-  function straightLine( serviceLife , price ){
-    
-
-  }
+  function straightLine( formObj , rateObj ){
+    if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
+    for( var i = 0; i < formObj.serviceLife; i++ ) {
+      console.log(i, rateObj.id);
+    }
+    }
 
 
   $('#trial_cal').on('click',function(e){
@@ -39,7 +41,7 @@ $(function(){
 
       switch (hashForm.method){
         case 0:
-          console.log(0);
+          straightLine( hashForm , rates[hashForm.serviceLife - 1] )
           break;
         case 1:
           break;
