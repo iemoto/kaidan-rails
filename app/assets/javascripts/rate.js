@@ -16,36 +16,48 @@ $(function(){
     }
     switch(jadgement){
       case 0:
-        return Math.round(value)
+        return Math.floor(value);
         break;
       case 1:
-        return Math.ceil(value);
+        return Math.round(value);
         break;
       case 2:
-        return Math.floor(value);
+        return Math.ceil(value);
         break;
     }
   }
   function straightLine( formObj , rateObj ){
+
     var table = {};
+    if (formObj.startMonth > formObj.operationMonth){
+      table.depMonth = formObj.startMonth - formObj.operationMonth;
+      console.log(table.depMonth);
+    }else{
+      table.depMonth = (formObj.operationMonth - formObj.startMonth) - 12;
+      console.log(table.depMonth);
+    }
+    let temp;
     if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
+
     for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
       table.id = i;
       table.beginValue = table.endValue;
+
       if (i === 1){
         table.beginValue = formObj.price;
         table.depValue = table.beginValue * rateObj.straight_line; 
         table.depValue = roundJudge( table.depValue , formObj.round );
+        temp = table.depValue;
+        table.depValue = table.depValue
         };
 
-      if (table.depValue >= table.beginValue){
-        table.depValue = table.beginValue - 1;
-        };
+      if (table.depValue >= table.beginValue){ table.depValue = table.beginValue - 1;};
+
       table.endValue = table.beginValue - table.depValue; 
 
       appendTable(table);
 
-      if (i === formObj.serviceLife + 1 && table.endValue > 1){
+      if (i === formObj.serviceLife && table.endValue > 1){
         table.id = i + 1;
         table.beginValue = table.endValue;
         table.depValue = table.beginValue - 1;
@@ -65,14 +77,15 @@ $(function(){
     })
     .done(function(rates){
       $('#target_table').children().remove();
-      console.log(rates[0]);
       var hashForm = {};
       hashForm.method = parseInt($('input[name = "method"]:checked').val(), 10);
       hashForm.round = parseInt($('input[name = "round"]:checked').val(), 10);
       hashForm.serviceLife = parseInt($('#ser_life').val(), 10);
-      hashForm.price = parseInt($('.price-form-text').val(), 10);
+      hashForm.price = Number($('.price-form-text').val().split(',').join(''));
+      hashForm.price = parseInt(hashForm.price, 10);
       hashForm.startMonth = parseInt($('#sta_month').val(), 10);
       hashForm.operationMonth = parseInt($('#ope_month').val(), 10);
+      console.log(hashForm);
 
       switch (hashForm.method){
         case 0:

@@ -24,14 +24,15 @@
         span.required 必須
       .radio-table-box
         label.radio-label
-          = radio_button_tag "round", value = 0, checked = true
+          = radio_button_tag "round", value= 0, checked = true
+          .radio-p.d-inline-block 切り捨て
+        label.radio-label
+          = radio_button_tag "round", value = 1
           p.radio-p.d-inline-block 四捨五入
         label.radio-label
-          = radio_button_tag "round", value= 1
-          .radio-p.d-inline-block 切り上げ
-        label.radio-label
           = radio_button_tag "round", value= 2
-          .radio-p.d-inline-block 切り捨て
+          .radio-p.d-inline-block 切り上げ
+
     .form-box-title
       .service_life-title
         | 耐用年数
