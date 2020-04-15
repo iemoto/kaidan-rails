@@ -1,8 +1,8 @@
 $(function(){
   $('#price').change(function(){
-    var price = $('#price');
-    if (price.val())
-    var priceExport = parseInt($('#price').val(),10).toLocaleString();
+    var priceExport = $('#price').val();
+    priceExport = priceExport.replace(/[^0-9]/g, "");
+    priceExport = parseInt(priceExport,10).toLocaleString();
     $('#price').val(priceExport);
   })
 })
