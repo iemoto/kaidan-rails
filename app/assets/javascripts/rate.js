@@ -33,7 +33,7 @@ $(function(){
       table.depMonth = formObj.startMonth - formObj.operationMonth;
       console.log(table.depMonth);
     }else{
-      table.depMonth = (formObj.operationMonth - formObj.startMonth) - 12;
+      table.depMonth = 12 - (formObj.operationMonth - formObj.startMonth);
       console.log(table.depMonth);
     }
     let temp;
@@ -48,14 +48,21 @@ $(function(){
         table.depValue = table.beginValue * rateObj.straight_line; 
         table.depValue = roundJudge( table.depValue , formObj.round );
         temp = table.depValue;
-        table.depValue = table.depValue
+        if (!isNaN(formObj.startMonth) || !isNaN(formObj.operationMonth)){
+          table.depValue = (table.depValue / 12) * table.depMonth;
+          table.depValue = roundJudge( table.depValue , formObj.round );
         };
+      };
 
       if (table.depValue >= table.beginValue){ table.depValue = table.beginValue - 1;};
 
       table.endValue = table.beginValue - table.depValue; 
 
       appendTable(table);
+
+      if (i === 1){
+        table.depValue = temp;
+      };
 
       if (i === formObj.serviceLife && table.endValue > 1){
         table.id = i + 1;
