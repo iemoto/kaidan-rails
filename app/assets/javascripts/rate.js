@@ -1,25 +1,56 @@
 $(function(){
   var targetTable = $('#target_table');
-  function buildTable(tabel){
+  function appendTable(table){
     var html = `
       <tr>
-        <td>${tabel}</td>
-        <td>${tabel}</td>
-        <td>${tabel}</td>
-        <td>${tabel}</td>
-      </tr>
-      `
-      targetTable.append(html);
+        <td> ${table.id} </td>
+        <td> ${table.beginValue.toLocaleString()} </td>
+        <td> ${table.depValue.toLocaleString()} </td>
+        <td> ${table.endValue.toLocaleString()} </td>
+      </tr>`
+    targetTable.append(html);
   }
-
+  function roundJudge( value , jadgement ){
+    if (value === null || isNaN(value) || typeof jadgement != 'number') {
+      return NaN;
+    }
+    switch(jadgement){
+      case 0:
+        return Math.round(value)
+        break;
+      case 1:
+        return Math.ceil(value);
+        break;
+      case 2:
+        return Math.floor(value);
+        break;
+    }
+  }
   function straightLine( formObj , rateObj ){
-    var tabel = {};
+    var table = {};
     if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
     for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
+      table.id = i;
+      table.beginValue = table.endValue;
       if (i === 1){
-      tabel.beginningBookValue = formObj.price
-      tabel.depreciationLimit = formObj.price / 
-      tabel.periodEndBookPrice = formObj.price / 
+        table.beginValue = formObj.price;
+        table.depValue = table.beginValue * rateObj.straight_line; 
+        table.depValue = roundJudge( table.depValue , formObj.round );
+        };
+
+      if (table.depValue >= table.beginValue){
+        table.depValue = table.beginValue - 1;
+        };
+      table.endValue = table.beginValue - table.depValue; 
+
+      appendTable(table);
+
+      if (i === formObj.serviceLife + 1 && table.endValue > 1){
+        table.id = i + 1;
+        table.beginValue = table.endValue;
+        table.depValue = table.beginValue - 1;
+        table.endValue = table.beginValue - table.depValue;
+        appendTable(table);
       }
     }
   }
@@ -35,8 +66,6 @@ $(function(){
     .done(function(rates){
       $('#target_table').children().remove();
       console.log(rates[0]);
-      buildTable(1);
-      buildTable(2);
       var hashForm = {};
       hashForm.method = parseInt($('input[name = "method"]:checked').val(), 10);
       hashForm.round = parseInt($('input[name = "round"]:checked').val(), 10);
