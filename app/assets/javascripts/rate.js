@@ -31,12 +31,13 @@ $(function(){
     if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
 
     var table = {};
+    let temp;
+
     if (formObj.startMonth > formObj.operationMonth){
       table.depMonth = formObj.startMonth - formObj.operationMonth;
     }else{
       table.depMonth = 12 - (formObj.operationMonth - formObj.startMonth);
     }
-    let temp;
 
     for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
       table.id = i;
@@ -127,49 +128,53 @@ $(function(){
       }
     }
   }
-  var table = {};
-  if (formObj.startMonth > formObj.operationMonth){
-    table.depMonth = formObj.startMonth - formObj.operationMonth;
-  }else{
-    table.depMonth = 12 - (formObj.operationMonth - formObj.startMonth);
-  }
-  let temp;
+  function straightLine( formObj , rateObj ){
 
-  for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
-    table.id = i;
-    table.beginValue = table.endValue;
+    if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
 
-    if (i === 1){
-      table.beginValue = formObj.price;
-      table.depValue = table.beginValue * rateObj.straight_line; 
-      table.depValue = roundJudge( table.depValue , formObj.round );
-      temp = table.depValue;
-      if (!isNaN(formObj.startMonth) || !isNaN(formObj.operationMonth)){
-        table.depValue = (table.depValue / 12) * table.depMonth;
-        table.depValue = roundJudge( table.depValue , formObj.round );
-      };
-    };
+    var table = {};
+    let temp;
 
-    if (table.depValue >= table.beginValue){ table.depValue = table.beginValue - 1;};
-
-    table.endValue = table.beginValue - table.depValue; 
-
-    appendTable(table);
-
-    if (i === 1){
-      table.depValue = temp;
-    };
-
-    if (i === formObj.serviceLife && table.endValue > 1){
-      table.id = i + 1;
+    if (formObj.startMonth > formObj.operationMonth){
+      table.depMonth = formObj.startMonth - formObj.operationMonth;
+    }else{
+      table.depMonth = 12 - (formObj.operationMonth - formObj.startMonth);
+    }
+    
+    for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
+      table.id = i;
       table.beginValue = table.endValue;
-      table.depValue = table.beginValue - 1;
-      table.endValue = table.beginValue - table.depValue;
+
+      if (i === 1){
+        table.beginValue = formObj.price;
+        table.depValue = table.beginValue * rateObj.straight_line; 
+        table.depValue = roundJudge( table.depValue , formObj.round );
+        temp = table.depValue;
+        if (!isNaN(formObj.startMonth) || !isNaN(formObj.operationMonth)){
+          table.depValue = (table.depValue / 12) * table.depMonth;
+          table.depValue = roundJudge( table.depValue , formObj.round );
+        };
+      };
+
+      if (table.depValue >= table.beginValue){ table.depValue = table.beginValue - 1;};
+
+      table.endValue = table.beginValue - table.depValue; 
+
       appendTable(table);
+
+      if (i === 1){
+        table.depValue = temp;
+      };
+
+      if (i === formObj.serviceLife && table.endValue > 1){
+        table.id = i + 1;
+        table.beginValue = table.endValue;
+        table.depValue = table.beginValue - 1;
+        table.endValue = table.beginValue - table.depValue;
+        appendTable(table);
+      }
     }
   }
-}
-
   $('#trial_cal').on('click',function(e){
     e.preventDefault();
     $.ajax({
