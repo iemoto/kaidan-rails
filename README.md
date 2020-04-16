@@ -1,5 +1,11 @@
 # README
 
+
+![GitHub top language](https://img.shields.io/github/languages/top/iemoto/fake_merc)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iemoto/fake_merc)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/iemoto/fake_merc)
+![GitHub contributors](https://img.shields.io/github/contributors/iemoto/fake_merc)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
