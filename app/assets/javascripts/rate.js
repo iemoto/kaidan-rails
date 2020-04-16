@@ -128,9 +128,8 @@ $(function(){
       }
     }
   }
-  function straightLine( formObj , rateObj ){
-
-    if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
+  function evenDepreciation(formObj){
+    if (typeof formObj != 'object') return false;
 
     var table = {};
     let temp;
@@ -147,16 +146,16 @@ $(function(){
 
       if (i === 1){
         table.beginValue = formObj.price;
-        table.depValue = table.beginValue * rateObj.straight_line; 
-        table.depValue = roundJudge( table.depValue , formObj.round );
+        table.depValue = table.beginValue / formObj.serviceLife; 
         temp = table.depValue;
+        temp = roundJudge( temp , formObj.round )
         if (!isNaN(formObj.startMonth) || !isNaN(formObj.operationMonth)){
           table.depValue = (table.depValue / 12) * table.depMonth;
-          table.depValue = roundJudge( table.depValue , formObj.round );
         };
+        table.depValue = roundJudge( table.depValue , formObj.round );
       };
 
-      if (table.depValue >= table.beginValue){ table.depValue = table.beginValue - 1;};
+      if (table.depValue >= table.beginValue){ table.depValue = table.beginValue;};
 
       table.endValue = table.beginValue - table.depValue; 
 
@@ -166,10 +165,10 @@ $(function(){
         table.depValue = temp;
       };
 
-      if (i === formObj.serviceLife && table.endValue > 1){
+      if (i === formObj.serviceLife && table.endValue > 0){
         table.id = i + 1;
         table.beginValue = table.endValue;
-        table.depValue = table.beginValue - 1;
+        table.depValue = table.beginValue - 0;
         table.endValue = table.beginValue - table.depValue;
         appendTable(table);
       }
@@ -201,6 +200,7 @@ $(function(){
           fiexdRate( hashForm , rates[hashForm.serviceLife - 1] );
           break;
         case 2:
+          evenDepreciation(hashForm);
           break;
       }
     })
