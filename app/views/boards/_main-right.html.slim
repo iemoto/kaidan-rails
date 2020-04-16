@@ -1,0 +1,73 @@
+.main-right.float-right
+  .main-right-inner
+    h4.main-title
+      | 減価償却費シミュレーター 
+      br
+      | (平成24年6月1日以降取得版)
+    .form-box-title
+      .radio-table-title
+        | 償却方法
+        span.required 必須
+      .radio-table-box
+        label.radio-label
+          = radio_button_tag "method", value = 0, checked = true
+          p.radio-p.d-inline-block 定額法
+        label.radio-label
+          = radio_button_tag "method", value= 1
+          .radio-p.d-inline-block 定率法
+        label.radio-label
+          = radio_button_tag "method", value= 2
+          .radio-p.d-inline-block 均等償却
+    .form-box-title
+      .radio-table-title
+        | 端数処理方法
+        span.required 必須
+      .radio-table-box
+        label.radio-label
+          = radio_button_tag "round", value= 0, checked = true
+          .radio-p.d-inline-block 切り捨て
+        label.radio-label
+          = radio_button_tag "round", value = 1
+          p.radio-p.d-inline-block 四捨五入
+        label.radio-label
+          = radio_button_tag "round", value= 2
+          .radio-p.d-inline-block 切り上げ
+
+    .form-box-title
+      .service_life-title
+        | 耐用年数
+        span.required 必須
+      .form-box-select
+        = select_tag :ser_life , options_for_select(Array.new(50){ |i| [ sprintf('%2d年', i + 1),  i + 1 ]}),prompt: '選択してください',class:'form-input'
+        .form-double-down
+          = image_tag asset_path("angle-double-down-solid.svg"), alt:'double-down',size:'20x20' 
+    .form-box-title
+      .price-title
+        | 取得価格
+        span.required 必須
+      .price-box
+        label.label-item
+        .price-form
+          = text_field_tag :price ,'' ,placeholder: '半角数字で入力してください',class:'price-form-text'
+          .price-form-yen 円
+    .form-box-title
+      .business_start_month
+        | 事業開始月
+        span.required 必須
+      .form-box-select
+        = select_tag :sta_month , options_for_select(Array.new(12){ |i| [ sprintf('%2d月', i + 1),  i + 1 ]}),prompt: '選択してください',class:'form-input'
+        .form-double-down
+          = image_tag asset_path("angle-double-down-solid.svg"), alt:'double-down',size:'20x20' 
+
+    .form-box-title
+      .business_operation_month
+        | 事業供用開始月
+        span.required 必須
+      .form-box-select
+        = select_tag :ope_month , options_for_select(Array.new(12){ |i| [ sprintf('%2d月', i + 1),  i + 1 ]}),prompt: '選択してください',class:'form-input'
+        .form-double-down
+          = image_tag asset_path("angle-double-down-solid.svg"), alt:'double-down',size:'20x20'
+
+    .form-box-title
+      .form-box-select
+        input.btn.form-input.form-last type ='submit' id ='trial_cal' value = '試　　　算'

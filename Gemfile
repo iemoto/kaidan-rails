@@ -78,3 +78,4 @@ gem 'active_hash'
 # jQueryを使用するために必要
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'annotate'
