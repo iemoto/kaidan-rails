@@ -26,6 +26,17 @@ $(function(){
         break;
     }
   }
+
+  function firstYearUseMonths(startMonth, operationMonth){
+    var depMonth;
+    if (startMonth > operationMonth){
+      depMonth = startMonth - operationMonth;
+    }else{
+      depMonth = 12 - (operationMonth - startMonth);
+    }
+    return depMonth;
+  }
+
   function straightLine( formObj , rateObj ){
 
     if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
@@ -33,11 +44,7 @@ $(function(){
     var table = {};
     let temp;
 
-    if (formObj.startMonth > formObj.operationMonth){
-      table.depMonth = formObj.startMonth - formObj.operationMonth;
-    }else{
-      table.depMonth = 12 - (formObj.operationMonth - formObj.startMonth);
-    }
+    table.depMonth = firstYearUseMonths(formObj.startMonth, formObj.operationMonth)
 
     for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
       table.id = i;
@@ -79,27 +86,22 @@ $(function(){
 
     var table = {};
     var compeJudg = Boolean('true');
-    if (formObj.startMonth > formObj.operationMonth){
-      table.depMonth = formObj.startMonth - formObj.operationMonth;
-    }else{
-      table.depMonth = 12 - (formObj.operationMonth - formObj.startMonth);
-    }
+
+    table.depMonth = firstYearUseMonths(formObj.startMonth, formObj.operationMonth)
+
 
     for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
       table.id = i;
       table.beginValue = table.endValue;
       table.depValue = table.beginValue * rateObj.fixed_rate; 
       table.depValue = roundJudge( table.depValue , formObj.round );
-      if (compeJudg){
-      table.revPrice = table.endValue ;
-      debugger
-      }
+      if (compeJudg){ table.revPrice = table.endValue; };
       
       if (table.guaranteed > table.depValue) {
         compeJudg = Boolean('');
         table.depValue = table.revPrice * rateObj.revised_depreciation_rate; 
         table.depValue = roundJudge( table.depValue , formObj.round );
-      }
+      };
 
       if (i === 1){
         table.beginValue = formObj.price;
@@ -134,11 +136,7 @@ $(function(){
     var table = {};
     let temp;
 
-    if (formObj.startMonth > formObj.operationMonth){
-      table.depMonth = formObj.startMonth - formObj.operationMonth;
-    }else{
-      table.depMonth = 12 - (formObj.operationMonth - formObj.startMonth);
-    }
+    table.depMonth = firstYearUseMonths(formObj.startMonth, formObj.operationMonth)
     
     for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
       table.id = i;
