@@ -1,5 +1,6 @@
 # README
 
+# KAIDAN
 
 ![GitHub top language](https://img.shields.io/github/languages/top/iemoto/kaidan-rails)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iemoto/kaidan-rails)
@@ -9,22 +10,13 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+# DB設計
+## usersテーブル
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+|Column|Type|Options|
+|------|----|-------|
+|fixed_rate|string||
+|guarantee_rate|float(24)||
+|revised_depreciation_rate|float(24)||
+|straight_line|float(24)||
+|password|float(24)||
