@@ -9,7 +9,7 @@ $(function(){
         <td> ${table.endValue.toLocaleString()} </td>
       </tr>`
     targetTable.append(html);
-  }
+  };
   function roundJudge( value , jadgement ){
     if (value === null || isNaN(value) || typeof jadgement != 'number') {
       return NaN;
@@ -24,8 +24,8 @@ $(function(){
       case 2:
         return Math.ceil(value);
         break;
-    }
-  }
+    };
+  };
 
   function firstYearUseMonths(startMonth, operationMonth){
     var depMonth;
@@ -35,7 +35,15 @@ $(function(){
       depMonth = 12 - (operationMonth - startMonth);
     }
     return depMonth;
-  }
+  };
+
+  function lastDepreciation(table,memoValue){
+    table.id = table.id + 1;
+    table.beginValue = table.endValue;
+    table.depValue = table.beginValue - memoValue;
+    table.endValue = table.beginValue - table.depValue;
+    appendTable(table);
+  };
 
   function straightLine( formObj , rateObj ){
 
@@ -72,14 +80,11 @@ $(function(){
       };
 
       if (i === formObj.serviceLife && table.endValue > 1){
-        table.id = i + 1;
-        table.beginValue = table.endValue;
-        table.depValue = table.beginValue - 1;
-        table.endValue = table.beginValue - table.depValue;
-        appendTable(table);
+        lastDepreciation(table , 1);
       }
     }
   }
+
   function fiexdRate( formObj , rateObj ){
 
     if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
@@ -122,11 +127,7 @@ $(function(){
       appendTable(table);
 
       if (i === formObj.serviceLife && table.endValue > 1){
-        table.id = i + 1;
-        table.beginValue = table.endValue;
-        table.depValue = table.beginValue - 1;
-        table.endValue = table.beginValue - table.depValue;
-        appendTable(table);
+        lastDepreciation(table , 1);
       }
     }
   }
@@ -164,14 +165,10 @@ $(function(){
       };
 
       if (i === formObj.serviceLife && table.endValue > 0){
-        table.id = i + 1;
-        table.beginValue = table.endValue;
-        table.depValue = table.beginValue - 0;
-        table.endValue = table.beginValue - table.depValue;
-        appendTable(table);
-      }
-    }
-  }
+        lastDepreciation(table , 0);
+      };
+    };
+  };
   $('#trial_cal').on('click',function(e){
     e.preventDefault();
     $.ajax({
