@@ -75,7 +75,7 @@ $(function(){
   function fiexdRate( formObj , rateObj ){
 
     if (typeof rateObj != 'object'|| typeof formObj != 'object') return false;
-    
+
     var table = {};
     if (formObj.startMonth > formObj.operationMonth){
       table.depMonth = formObj.startMonth - formObj.operationMonth;
@@ -88,12 +88,19 @@ $(function(){
     for( var i = 1; i < formObj.serviceLife + 1; i++ ) {
       table.id = i;
       table.beginValue = table.endValue;
+      table.depValue = table.beginValue * rateObj.fixed_rate; 
+      table.depValue = roundJudge( table.depValue , formObj.round );
+      if (table.guaranteed > table.depValue) {
+        table.depValue = table.beginValue * rateObj.fixed_rate; 
+        table.depValue = roundJudge( table.depValue , formObj.round );
+      }
 
       if (i === 1){
         table.beginValue = formObj.price;
-        table.depValue = table.beginValue * rateObj.straight_line; 
+        table.depValue = table.beginValue * rateObj.fixed_rate; 
         table.depValue = roundJudge( table.depValue , formObj.round );
-        temp = table.depValue;
+        table.guaranteed = table.beginValue * rateObj.guarantee_rate; 
+        table.guaranteed = roundJudge( table.guaranteed , formObj.round );
         if (!isNaN(formObj.startMonth) || !isNaN(formObj.operationMonth)){
           table.depValue = (table.depValue / 12) * table.depMonth;
           table.depValue = roundJudge( table.depValue , formObj.round );
