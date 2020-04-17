@@ -8,6 +8,11 @@
 
 ![KAIDAN](/materials/kaidan-top.png)
 
+# USAGE
+
+```
+$ git clone https://github.com/iemoto/kaidan-rails.git
+```
 
 # DB設計
 ## ratesテーブル
