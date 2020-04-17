@@ -7,7 +7,6 @@
     .form-box-title
       .radio-table-title
         | 償却方法
-        span.required 必須
       .radio-table-box
         label.radio-label
           = radio_button_tag "method", value = 0, checked = true
@@ -21,7 +20,6 @@
     .form-box-title
       .radio-table-title
         | 端数処理方法
-        span.required 必須
       .radio-table-box
         label.radio-label
           = radio_button_tag "round", value= 0, checked = true
@@ -48,7 +46,7 @@
       .price-box
         label.label-item
         .price-form
-          = text_field_tag :price ,'' ,placeholder: '半角数字で入力してください',class:'price-form-text'
+          = text_field_tag :price ,'' ,placeholder: '半角数字を入力してください',class:'price-form-text'
           .price-form-yen 円
     .form-box-title
       .business_start_month
