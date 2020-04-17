@@ -38,7 +38,7 @@
         | 耐用年数
         span.required 必須
       .form-box-select
-        = select_tag :ser_life , options_for_select(Array.new(50){ |i| [ sprintf('%2d年', i + 1),  i + 1 ]}),prompt: '選択してください',class:'form-input'
+        = select_tag :ser_life , options_for_select(Array.new(49){ |i| [ sprintf('%2d年', i + 2),  i + 2 ]}),prompt: '選択してください',class:'form-input'
         .form-double-down
           = image_tag asset_path("angle-double-down-solid.svg"), alt:'double-down',size:'20x20' 
     .form-box-title
