@@ -7,7 +7,6 @@
     .form-box-title
       .radio-table-title
         | 償却方法
-        span.required 必須
       .radio-table-box
         label.radio-label
           = radio_button_tag "method", value = 0, checked = true
@@ -21,7 +20,6 @@
     .form-box-title
       .radio-table-title
         | 端数処理方法
-        span.required 必須
       .radio-table-box
         label.radio-label
           = radio_button_tag "round", value= 0, checked = true
@@ -38,7 +36,7 @@
         | 耐用年数
         span.required 必須
       .form-box-select
-        = select_tag :ser_life , options_for_select(Array.new(50){ |i| [ sprintf('%2d年', i + 1),  i + 1 ]}),prompt: '選択してください',class:'form-input'
+        = select_tag :ser_life , options_for_select(Array.new(49){ |i| [ sprintf('%2d年', i + 2),  i + 2 ]}),prompt: '選択してください',class:'form-input'
         .form-double-down
           = image_tag asset_path("angle-double-down-solid.svg"), alt:'double-down',size:'20x20' 
     .form-box-title
@@ -48,7 +46,7 @@
       .price-box
         label.label-item
         .price-form
-          = text_field_tag :price ,'' ,placeholder: '半角数字で入力してください',class:'price-form-text'
+          = text_field_tag :price ,'' ,placeholder: '半角数字を入力してください',class:'price-form-text'
           .price-form-yen 円
     .form-box-title
       .business_start_month

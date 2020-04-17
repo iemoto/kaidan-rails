@@ -198,6 +198,8 @@ $(function(){
           evenDepreciation(hashForm);
           break;
       }
+      $('html').animate({ scrollTop:0})
+
     })
     .fail(function(){
       console.log('Error')
