@@ -6,7 +6,8 @@
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/iemoto/kaidan-rails)
 ![GitHub contributors](https://img.shields.io/github/contributors/iemoto/kaidan-rails)
 
-![KAIDAN](/materials/kaidan-top.png)
+![KAIDAN](/materials/toppage.png)
+![KAIDAN](/materials/toppage.gif)
 
 # USAGE
 
