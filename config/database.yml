@@ -52,3 +52,4 @@ production:
   database: kaidan_production
   username: kaidan
   password: <%= ENV['KAIDAN_DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
