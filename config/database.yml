@@ -50,6 +50,6 @@ test:
 production:
   <<: *default
   database: kaidan_production
-  username: kaidan
+  username: root
   password: <%= ENV['KAIDAN_DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
